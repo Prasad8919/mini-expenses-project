@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USERID=$ (id -u 0 )
+USERID=$(id -u 0)
 
 echo "Please enter DB password:"
 read -s mysql_root_password
