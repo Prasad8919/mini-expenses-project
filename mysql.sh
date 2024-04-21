@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USERID=$(id -u 0)
+USERID=$(id -u)
 
 echo "Please enter DB password:"
 read -s mysql_root_password
@@ -33,7 +33,11 @@ VALIDATE $? "Enabling MySQL Server"
 systemctl start mysqld &>>$LOGFILE
 VALIDATE $? "Starting MySQL Server"
 
-mysql -h 172.31.87.132 -uroot -p${mysql_root_password} -e 'show databases;' &>>$LOGFILE
+# mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
+# VALIDATE $? "Setting up root password"
+
+#Below code will be useful for idempotent nature
+mysql -h db.daws78s.online -uroot -p${mysql_root_password} -e 'show databases;' &>>$LOGFILE
 if [ $? -ne 0 ]
 then
     mysql_secure_installation --set-root-pass ${mysql_root_password} &>>$LOGFILE
