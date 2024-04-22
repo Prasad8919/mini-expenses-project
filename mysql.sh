@@ -2,14 +2,27 @@
 
 USERID=$(id -u)
 
-echo "please enter the DB password"
-read -s mysql_root_password
+VALIDATE(){
+   if [ $1 -ne 0 ]
+   then
+        echo "$2...FAILURE"
+        exit 1
+    else
+        echo "$2...SUCCESS"
+    fi
+}
 
 if [ $USERID -ne 0 ]
 then
-   echo "please run this script as a root user"
+    echo "Please run this script with root access."
+    exit 1 # manually exit if error comes.
 else
-   echo "you are the super user"
-   exit 1
-fi 
+    echo "You are super user."
+fi
+
+dnf install mysql -y 
+VALIDATE $? "Installing MySQL"
+
+dnf install git -y
+VALIDATE $? "Installing Git"
 
