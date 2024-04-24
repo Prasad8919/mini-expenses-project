@@ -1,5 +1,14 @@
-#!/bin/sh
+#!/usr/bin/bash
 
-FILENAME=$file.txt
+# path to the file
+file_path="/Users/pc/OneDrive/Desktop/Cloud/Practice/repo/mini-expenses-project/file.txt"
 
-cat $file.txt ilename |  sed "s/_/new/g" | sed "s/$word/_/g" | tr -c -d _ |wc -c
+# using wc command to count number of lines
+number_of_lines=`wc --lines < $file_path`
+
+# using wc command to count number of words
+number_of_words=`wc --word < $file_path`
+
+# Displaying number of lines and number of words
+echo "Number of lines: $number_of_lines"
+echo "Number of words: $number_of_words"
