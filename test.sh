@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # path to the file
-file_path="c/Users/pc/OneDrive/Desktop/Cloud/Practice/repo/mini-expenses-project/file.txt"
+file_path="/c/Users/pc/OneDrive/Desktop/Cloud/practice/repo/mini-expenses-project/file.txt"
 
 # using wc command to count number of lines
 number_of_lines=`wc --lines < $file_path`
