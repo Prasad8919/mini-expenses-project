@@ -23,25 +23,18 @@ VALIDATE(){
     fi
 }
 
-if [ $USERID -ne 0 ]
-then
-   echo "please run this script with root user"
-   exit 1
-else
-   echo "you are the super user"
-fi
-
 dnf install mysql -y &>>$LOGFILE
 VALIDATE $? "installing mysql"
 
 systemctl enable mysqld &>>$LOGFILE
-VALIDATE &? "enablling mysql"
+VALIDATE $? "Enabling MySQL Server"
+
 
 systemctl start mysqld &>>$LOGFILE
 VALIDATE $? "starting mysql"
 
 
-mysql -h <db_ip> -uroot -p${mysql_root_password} -e 'show databases;' &>>$LOGFILE
+mysql -h 172.31.91.42 -uroot -p${mysql_root_password} -e 'show databases;' &>>$LOGFILE
 if [ $? -ne 0 ]
 then
     mysql_secure_installation --set-root-pass ${mysql_root_password} &>>$LOGFILE
