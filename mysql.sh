@@ -5,8 +5,8 @@ USERID=$(id -u)
 
 if [ $USERID -ne 0 ]
 then
-  print "please run this script with root access"
+    echo "Please run this script with root access."
+    
 else
-  print "your are the super user"
-fi 
-
+    echo "You are super user."
+fi
