@@ -23,8 +23,8 @@ VALIDATE(){
     fi
 }
 
-dnf install mysql -y &>>$LOGFILE
-VALIDATE $? "installing mysql"
+dnf install mysql-server -y &>>$LOGFILE
+VALIDATE $? "Installing MySQL Server"
 
 systemctl enable mysqld &>>$LOGFILE
 VALIDATE $? "Enabling MySQL Server"
